@@ -9,7 +9,13 @@
         <p><strong>Email:</strong> {{ item.email }}</p>
       </div>
     </div>
-    <div class="cssCircle minusSign" style="padding-top: 00px">&#8211;</div>
+    <div
+      class="cssCircle minusSign"
+      @click="deleteContact(index)"
+      style="padding-top: 00px"
+    >
+      &#8211;
+    </div>
   </div>
 </template>
 
@@ -25,6 +31,10 @@ export default {
   methods: {
     toggleDetail(index) {
       this.list[index].isHidden = !this.list[index].isHidden;
+    },
+    deleteContact(index) {
+      console.log("list", this.list[index]);
+      this.list.splice(index, 1);
     },
   },
 };
