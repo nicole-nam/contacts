@@ -1,18 +1,27 @@
 <template>
   <div>
     <h3>Contact Form</h3>
+    {{ contact }}
     <form v-on:submit.prevent="onSubmit">
       <label>First name</label>
-      <input type="text" placeholder="Your name..." />
+      <input v-model="contact.fname" type="text" placeholder="Your name..." />
       <br />
       <label>Last name</label>
-      <input type="text" placeholder="Your last name..." />
+      <input
+        v-model="contact.lname"
+        type="text"
+        placeholder="Your last name..."
+      />
       <br />
       <label>Phone</label>
-      <input type="number" placeholder="Phone number..." />
+      <input
+        v-model="contact.phone"
+        type="number"
+        placeholder="Phone number..."
+      />
       <br />
       <label>Email</label>
-      <input type="email" placeholder="Email..." />
+      <input v-model="contact.email" type="email" placeholder="Email..." />
       <br />
       <input type="submit" value="Submit" />
     </form>
@@ -22,7 +31,14 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      contact: {
+        fname: null,
+        lname: null,
+        phone: null,
+        email: null,
+      },
+    };
   },
   methods: {},
 };
