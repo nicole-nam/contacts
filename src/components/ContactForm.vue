@@ -54,6 +54,7 @@ export default {
           lname: this.lname,
           phone: this.phone,
           email: this.email,
+          isHidden: true,
         });
         this.fname = null;
         this.lname = null;
@@ -120,4 +121,5 @@ div {
   background-color: #f2f2f2;
   padding: 20px;
 }
+
 </style>

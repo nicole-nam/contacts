@@ -1,8 +1,8 @@
 <template>
   <div v-for="(item, index) in list" :key="index">
     <h2>{{ item.fname }} {{ item.lname }}</h2>
-    <button @click="toggleDetail()">Show Detail</button>
-    <div v-if="detailVisible">
+    <button @click="toggleDetail(index)">Show Detail</button>
+    <div :class="{ hide: item.isHidden }">
       <p><strong>Phone:</strong> {{ item.phone }}</p>
       <p><strong>Email:</strong> {{ item.email }}</p>
     </div>
@@ -19,10 +19,15 @@ export default {
     };
   },
   methods: {
-    toggleDetail() {
-      this.detailVisible = !this.detailVisible;
-      console.log(this.detailVisible);
+    toggleDetail(index) {
+      this.list[index].isHidden = !this.list[index].isHidden;
     },
   },
 };
 </script>
+
+<style scoped>
+.hide {
+  display: none;
+}
+</style>
