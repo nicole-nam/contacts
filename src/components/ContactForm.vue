@@ -1,46 +1,68 @@
 <template>
   <div>
     <h3>Contact Form</h3>
-    {{ contact }}
     <form v-on:submit.prevent="onSubmit">
       <label>First name</label>
-      <input v-model="contact.fname" type="text" placeholder="Your name..." />
+      <input v-model="fname" type="text" placeholder="Your name..." required />
       <br />
       <label>Last name</label>
       <input
-        v-model="contact.lname"
+        v-model="lname"
         type="text"
         placeholder="Your last name..."
+        required
       />
       <br />
       <label>Phone</label>
       <input
-        v-model="contact.phone"
+        v-model="phone"
         type="number"
         placeholder="Phone number..."
+        required
       />
       <br />
       <label>Email</label>
-      <input v-model="contact.email" type="email" placeholder="Email..." />
+      <input v-model="email" type="email" placeholder="Email..." required />
       <br />
-      <input type="submit" value="Submit" />
+      <input type="submit" @click="onSubmit()" />
     </form>
   </div>
+
+  <ContactCard :contacts="contacts" />
 </template>
 
 <script>
+import ContactCard from "./ContactCard";
 export default {
+  components: {
+    ContactCard,
+  },
   data() {
     return {
-      contact: {
-        fname: null,
-        lname: null,
-        phone: null,
-        email: null,
-      },
+      contacts: [],
+      fname: null,
+      lname: null,
+      phone: null,
+      email: null,
     };
   },
-  methods: {},
+  methods: {
+    onSubmit() {
+      if (this.fname && this.lname && this.phone && this.email) {
+        this.contacts.push({
+          fname: this.fname,
+          lname: this.lname,
+          phone: this.phone,
+          email: this.email,
+        });
+        this.fname = null;
+        this.lname = null;
+        this.phone = null;
+        this.email = null;
+      }
+      console.log("contacts", this.contacts);
+    },
+  },
 };
 </script>
 

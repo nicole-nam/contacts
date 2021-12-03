@@ -1,15 +1,12 @@
 <template>
   <ContactForm />
-  <ContactCard />
 </template>
 
 <script>
-import ContactCard from "./components/ContactCard";
 import ContactForm from "./components/ContactForm";
 export default {
   name: "app",
   components: {
-    ContactCard,
     ContactForm,
   },
   data() {
