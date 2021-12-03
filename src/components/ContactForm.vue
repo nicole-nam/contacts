@@ -3,28 +3,67 @@
     <h3>Contact Form</h3>
     <form v-on:submit.prevent="onSubmit">
       <label>First name</label>
-      <input type="text" placeholder="Your name..." />
+      <input v-model="fname" type="text" placeholder="Your name..." required />
       <br />
       <label>Last name</label>
-      <input type="text" placeholder="Your last name..." />
+      <input
+        v-model="lname"
+        type="text"
+        placeholder="Your last name..."
+        required
+      />
       <br />
       <label>Phone</label>
-      <input type="number" placeholder="Phone number..." />
+      <input
+        v-model="phone"
+        type="number"
+        placeholder="Phone number..."
+        required
+      />
       <br />
       <label>Email</label>
-      <input type="email" placeholder="Email..." />
+      <input v-model="email" type="email" placeholder="Email..." required />
       <br />
-      <input type="submit" value="Submit" />
+      <input type="submit" @click="onSubmit()" />
     </form>
   </div>
+
+  <ContactCard :contacts="contacts" />
 </template>
 
 <script>
+import ContactCard from "./ContactCard";
 export default {
-  data() {
-    return {};
+  components: {
+    ContactCard,
   },
-  methods: {},
+  data() {
+    return {
+      contacts: [],
+      fname: null,
+      lname: null,
+      phone: null,
+      email: null,
+    };
+  },
+  methods: {
+    onSubmit() {
+      if (this.fname && this.lname && this.phone && this.email) {
+        this.contacts.push({
+          fname: this.fname,
+          lname: this.lname,
+          phone: this.phone,
+          email: this.email,
+          isHidden: true,
+        });
+        this.fname = null;
+        this.lname = null;
+        this.phone = null;
+        this.email = null;
+      }
+      console.log("contacts", this.contacts);
+    },
+  },
 };
 </script>
 
@@ -82,4 +121,5 @@ div {
   background-color: #f2f2f2;
   padding: 20px;
 }
+
 </style>
