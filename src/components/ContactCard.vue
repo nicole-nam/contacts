@@ -3,7 +3,7 @@
   <div v-for="(item, index) in list" :key="index" class="flex">
     <div class="card">
       <h2>{{ item.fname }} {{ item.lname }}</h2>
-      <button @click="toggleDetail(index)">Show Detail</button>
+      <button class="btn" @click="toggleDetail(index)">Show Detail</button>
       <div :class="{ hide: item.isHidden }">
         <p><strong>Phone:</strong> {{ item.phone }}</p>
         <p><strong>Email:</strong> {{ item.email }}</p>
@@ -46,6 +46,16 @@ export default {
   transition: 0.3s;
   width: 40%;
   margin: auto;
+}
+.btn {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);

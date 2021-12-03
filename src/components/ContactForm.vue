@@ -61,7 +61,6 @@ export default {
         this.phone = null;
         this.email = null;
       }
-      console.log("contacts", this.contacts);
     },
   },
 };
@@ -121,5 +120,4 @@ div {
   background-color: #f2f2f2;
   padding: 20px;
 }
-
 </style>
