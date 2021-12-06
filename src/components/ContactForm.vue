@@ -24,6 +24,16 @@
       <label>Email</label>
       <input v-model="email" type="email" placeholder="Email..." required />
       <br />
+      
+
+      <p v-if="errors.length">
+        <b>Please correct the following error(s):</b>
+        <ul>
+          <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+        </ul>
+      </p>
+
+
       <input type="submit" @click="onSubmit()" />
     </form>
   </div>
@@ -39,6 +49,7 @@ export default {
   },
   data() {
     return {
+      errors: [],
       contacts: [],
       fname: null,
       lname: null,
@@ -48,6 +59,14 @@ export default {
   },
   methods: {
     onSubmit() {
+      this.checkForm();
+    },
+    checkForm() {
+      this.errors = [];
+      if (!this.validEmail(this.email)) {
+        this.errors.push("Valid email required.");
+      }else {
+              
       if (this.fname && this.lname && this.phone && this.email) {
         this.contacts.push({
           fname: this.fname,
@@ -61,6 +80,12 @@ export default {
         this.phone = null;
         this.email = null;
       }
+      }
+    },
+    validEmail: function (email) {
+      var re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
     },
   },
 };
